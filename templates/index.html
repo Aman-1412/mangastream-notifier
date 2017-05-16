@@ -1,0 +1,26 @@
+<html>
+<title> Manga Updates </title>
+<body onload='news()'>
+<h1> Choose your manga: </h1>
+<input type="number" id="mob" placeholder="9876543210"/>
+<br><br>
+{% for x in range(lenva) %}
+<a href={{ch_link[x]}} name="g"> {{ch_name[x]}} {{ch_num[x]}} </a>
+<button onclick="location.href = '/subscribe?m={{ch_name[x]}}&mnum='+document.getElementById('mob').value"> Subscribe! </button>
+<br>
+{% endfor %}
+</body>
+<script>
+function news(){
+						d= document.getElementsByName('g')
+						 latest=parseInt(localStorage.getItem('latest'))
+						 if (!latest) latest=-1
+						 for (i=0;i<d.length;i++){
+                         if (parseInt(d[i].href.slice(-6,-2)) > latest) {d[i].innerHTML+='new!!'}
+						 else {break;}
+}                
+latest = parseInt(d[0].href.slice(-6,-2));
+localStorage.setItem('latest',latest)
+				}
+		
+</script>
